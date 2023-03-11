@@ -10,7 +10,7 @@ from artifact_hub.history_backends.history_s3_backend import HistoryS3Backend
 
 def test_hub_initialization_s3_hub():
     folder = "folder"
-    object_id = "object_id"
+    object_id = f"object_{secrets.token_hex(3)}"
     bucket_name = "iamr0b0tx-development"
 
     # create res dir if not existing. res is used to store resources(files) used by backends

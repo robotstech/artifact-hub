@@ -54,6 +54,8 @@ class HistoryS3Backend(HistoryBaseBackend):
         return self.__history[-1][0]
 
     def get_next_version_id(self) -> int:
+        if not self.__history:
+            return 0
         return self.get_latest_version_id() + 1
 
     def is_empty(self) -> bool:
