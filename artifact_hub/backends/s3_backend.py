@@ -73,9 +73,9 @@ class S3Backend(BaseBackend):
             self.__store.download_file(obj.key, obj_key_dest_path)
 
     def push(self, source_path: str, title: str, description: str):
-        version_id = self.__history.add_new_version()
-
         try:
+            version_id = self.__history.add_new_version()
+
             self.__store.upload_file(
                 self.__create_text_file(self.TITLE_PATH, title),
                 self.__get_repo_version_title_path(version_id)
@@ -99,9 +99,7 @@ class S3Backend(BaseBackend):
                     self.__get_repo_object_path(version_id, os.path.basename(source_path))
                 )
 
-            self.__history.sync()
             return self.__history.get_latest_version_id()
 
         except Exception as e:
             logger.warning(f"could not push: {e}")
-            self.__history.revert_latest_version()

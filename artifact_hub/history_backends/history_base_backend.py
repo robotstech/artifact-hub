@@ -7,19 +7,7 @@ class HistoryBaseBackend(ABC):
         pass
 
     @abstractmethod
-    def get_next_version_id(self) -> int:
-        pass
-
-    @abstractmethod
-    def sync(self):
-        pass
-
-    @abstractmethod
     def add_new_version(self) -> int:
-        pass
-
-    @abstractmethod
-    def revert_latest_version(self) -> int:
         pass
 
     @abstractmethod
