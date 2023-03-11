@@ -1,0 +1,52 @@
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+    "integration",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "artifact-hub"
+version = "0.0.3"
+description = "Use object storage as a self hosted hub"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["hub", "storage", "artifacts"]
+authors = [
+  { name="iamr0b0tx", email="tech@robotslimited.com" },
+]
+maintainers = [
+  { name="iamr0b0tx", email="tech@robotslimited.com" },
+]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    'License :: OSI Approved :: MIT License',
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+    "boto3>=1.26.89",
+]
+#dynamic = ["version"]
+
+[project.optional-dependencies]
+web = ["fastapi>=0.94.0", "uvicorn[standard]>=0.21.0"]
+
+
+[project.urls]
+Homepage = "https://https://github.com/robotstech/artifact-hub"
+Repository = "https://https://github.com/robotstech/artifact-hub.git"
+"Bug Tracker" = "https://github.com/robotstech/artifact-hub/issues"

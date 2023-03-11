@@ -1,7 +1,10 @@
+import os
+
 from artifact_hub.backends.s3_backend import S3Backend
 from artifact_hub.history_backends.history_s3_backend import HistoryS3Backend
 
-VERSION = '0.0.1'
+if not os.path.exists("res"):
+    os.mkdir("res")
 
 
 def s3_hub(bucket, folder, object_id):
