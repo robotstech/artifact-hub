@@ -47,7 +47,7 @@ setup(
         'boto>=2.49.0',
     ],
     extras_require={
-        'web': ['fastapi>=2.9.3'],
+        'web': ['fastapi==0.94.0', 'uvicorn[standard]==0.21.0'],
     },
     # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
