@@ -1,7 +1,8 @@
 # artifact-hub
+![main workflow](https://github.com/robotstech/artifacts-hub/actions/workflows/test.yml/badge.svg) <br>
 
 Manage artifacts using object storage. Manage all kinds of artifacts E.g. models, json files, sqlite dbs and track their
-versions and history using any object store as a backend. This project facilitates self hosted hub without a lot of
+versions and history using any object store as a backend. This project facilitates self-hosted hub without a lot of
 management overhead.
 
 Currently supported object stores include:
