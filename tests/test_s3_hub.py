@@ -39,6 +39,6 @@ def test_hub_initialization_s3_hub():
     if not os.path.exists("temp"):
         os.mkdir("temp")
 
-    hub.pull_into("temp")
+    hub.pull_into("temp", latest_version_id)
     with open(f"temp/{object_id}/{os.path.basename(sample_file_path)}") as file:
         assert file.readlines() == lines
