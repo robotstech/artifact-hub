@@ -11,14 +11,14 @@ UNSUPPORTED_VERSION_INFO = f'''
 ==========================
 Unsupported Python version
 ==========================
-This version of Django Microservices Admin requires Python {REQUIRED_PYTHON}, but you're trying
+This version of artifact-hub requires Python {REQUIRED_PYTHON}, but you're trying
 to install it on Python {CURRENT_PYTHON}.
 This may be because you are using a version of pip that doesn't
 understand the python_requires classifier. Make sure you
 have pip >= 9.0 and setuptools >= 24.2, then try again:
     $ python -m pip install --upgrade pip setuptools
-    $ python -m pip install django-microservices-admin
-This will install the latest version of Django Microservices Admin which works on
+    $ python -m pip install artifact-hub
+This will install the latest version of artifact-hub which works on
 your version of Python.
 '''
 
