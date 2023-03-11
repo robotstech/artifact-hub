@@ -13,6 +13,10 @@ def test_hub_initialization_s3_hub():
     object_id = "object_id"
     bucket_name = "iamr0b0tx-development"
 
+    # create res dir if not existing. res is used to store resources(files) used by backends
+    if not os.path.exists("res"):
+        os.mkdir("res")
+
     hub = s3_hub(bucket_name, folder, object_id)
     assert isinstance(hub, S3Backend)
 
@@ -31,7 +35,7 @@ def test_hub_initialization_s3_hub():
     latest_version_id = hub.push(sample_file_path, "pushing sample file", "this is a test for sample file")
     assert latest_version_id is not None
 
-    # create temp dir
+    # create temp dir if not existing
     if not os.path.exists("temp"):
         os.mkdir("temp")
 
