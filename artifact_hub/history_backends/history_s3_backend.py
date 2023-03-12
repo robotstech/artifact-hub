@@ -22,10 +22,7 @@ class HistoryS3Backend(HistoryBaseBackend):
             with open(self.HISTORY_PATH) as file:
                 history = list(map(lambda x: x.split(), file))
 
-            return list(map(
-                lambda y: (int(y[0]), y[1]),
-                history
-            ))
+            return history
 
         except ClientError:
             return []
@@ -37,7 +34,7 @@ class HistoryS3Backend(HistoryBaseBackend):
 
     def add_new_version(self):
         history = self.history
-        next_version_id = history[-1][0] + 1 if history else 0
+        next_version_id = self.generate_new_version_id()
         history.append((next_version_id, self.__get_current_datetime_string()))
         self.__sync(history.copy())
         return next_version_id
@@ -50,7 +47,7 @@ class HistoryS3Backend(HistoryBaseBackend):
             ).read().decode()
         )["dateTime"]
 
-    def get_latest_version_id(self) -> int:
+    def get_latest_version_id(self) -> str:
         return self.history[-1][0]
 
     def is_empty(self) -> bool:

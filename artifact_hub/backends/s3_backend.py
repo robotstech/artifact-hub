@@ -59,7 +59,7 @@ class S3Backend(BaseBackend):
             file.write(content)
         return filepath
 
-    def pull_into(self, destination_path: str, version_id: int = None):
+    def pull_into(self, destination_path: str, version_id: str = None):
         if not version_id:
             version_id = self.__history.get_latest_version_id()
 

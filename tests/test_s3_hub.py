@@ -1,11 +1,8 @@
 import os.path
 import secrets
 
-import boto3
-
 from artifact_hub import s3_hub
 from artifact_hub.backends.s3_backend import S3Backend
-from artifact_hub.history_backends.history_s3_backend import HistoryS3Backend
 
 
 def test_hub_initialization_s3_hub():
@@ -13,18 +10,8 @@ def test_hub_initialization_s3_hub():
     object_id = f"object_{secrets.token_hex(3)}"
     bucket_name = "iamr0b0tx-development"
 
-    # create res dir if not existing. res is used to store resources(files) used by backends
-    # if not os.path.exists("res"):
-    #     os.mkdir("res")
-
     hub = s3_hub(bucket_name, folder, object_id)
     assert isinstance(hub, S3Backend)
-
-    # download history file
-    boto3.resource('s3').Bucket(bucket_name).download_file(f"{folder}/{object_id}/{HistoryS3Backend.HISTORY}",
-                                                           HistoryS3Backend.HISTORY_PATH)
-    with open(HistoryS3Backend.HISTORY_PATH) as file:
-        assert file.read().startswith("0 ")
 
     random_idx = secrets.token_hex(3)
     sample_file_path = "res/sample_file.txt"

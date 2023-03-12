@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class BaseBackend(ABC):
     @abstractmethod
-    def pull_into(self, destination_path: str, version_id: int):
+    def pull_into(self, destination_path: str, version_id: str):
         pass
 
     @abstractmethod
