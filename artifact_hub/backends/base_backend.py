@@ -9,3 +9,7 @@ class BaseBackend(ABC):
     @abstractmethod
     def push(self, source_path: str, title: str, description: str):
         pass
+
+    @abstractmethod
+    def browse(self):
+        pass

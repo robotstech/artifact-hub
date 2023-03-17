@@ -89,7 +89,7 @@ class S3Backend(BaseBackend):
             if os.path.isdir(source_path):
                 for path, sub_dirs, files in os.walk(source_path):
                     for file in files:
-                        dest_path = path.replace(source_path, "")
+                        dest_path = path.replace(os.path.dirname(source_path), "")
                         __s3file = self.__get_repo_object_path(version_id, dest_path, file)
                         __local_file = os.path.join(path, file)
                         self.__store.upload_file(__local_file, __s3file)
@@ -103,3 +103,14 @@ class S3Backend(BaseBackend):
 
         except Exception as e:
             logger.warning(f"could not push: {e}")
+
+    def browse(self, version_id=None, *args):
+        if not version_id:
+            version_id = self.__history.get_latest_version_id()
+
+        base_path = self.__get_repo_object_path(version_id, *args) if args else self.__get_repo_path(version_id)
+        repo_version_path = f"{self.__get_repo_path(version_id)}/"
+        for obj in self.__store.objects.filter(Prefix=base_path):
+            obj_key_dest_path = os.path.normpath(obj.key) \
+                .replace(repo_version_path, "", 1)
+            yield obj_key_dest_path

@@ -2,7 +2,7 @@ import os.path
 import secrets
 
 from artifact_hub import s3_hub
-from artifact_hub.backends.s3_backend import S3Backend
+from artifact_hub import S3Backend
 
 
 def test_hub_initialization_s3_hub():
